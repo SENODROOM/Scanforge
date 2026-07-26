@@ -48,6 +48,19 @@
   color: var(--text-on-hazard);
 }
 
+/* ---------- Generate page ---------- */
+.generate-page__header {
+  margin-bottom: 28px;
+}
+.generate-page__header h1 {
+  font-size: 30px;
+  margin-bottom: 8px;
+}
+.generate-page__header p {
+  color: var(--text-secondary);
+  max-width: 60ch;
+}
+
 /* ---------- History / About shared headers ---------- */
 .history-page__header,
 .about-page__header {
@@ -66,15 +79,9 @@
 /* ---------- About page ---------- */
 .about-page__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 16px;
   margin-bottom: 24px;
-}
-
-@media (max-width: 760px) {
-  .about-page__grid {
-    grid-template-columns: 1fr;
-  }
 }
 
 .about-card {

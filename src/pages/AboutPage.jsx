@@ -1,4 +1,4 @@
-import { Cpu, Layers, ShieldCheck } from 'lucide-react'
+import { Cpu, Layers, QrCode, ShieldCheck } from 'lucide-react'
 import { BARCODE_FORMATS } from '../utils/barcodeFormats'
 import Card from '../components/ui/Card'
 import './pages.css'
@@ -30,6 +30,11 @@ export default function AboutPage() {
           <Layers size={20} />
           <h3>Built to extend</h3>
           <p>Modular React components and hooks make it straightforward to add new features.</p>
+        </Card>
+        <Card className="about-card">
+          <QrCode size={20} />
+          <h3>Encodes too</h3>
+          <p>Turn any text or link into a printable QR label from the Generate tab.</p>
         </Card>
       </div>
 

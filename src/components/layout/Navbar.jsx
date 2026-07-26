@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { Info, Menu, ScanLine, ScrollText, X } from 'lucide-react'
+import { Info, Menu, QrCode, ScanLine, ScrollText, X } from 'lucide-react'
 import BarcodeMark from '../ui/BarcodeMark'
 import './layout.css'
 
 const NAV_ITEMS = [
   { to: '/', label: 'Scanner', icon: ScanLine, end: true },
+  { to: '/generate', label: 'Generate', icon: QrCode },
   { to: '/log', label: 'Log', icon: ScrollText },
   { to: '/about', label: 'About', icon: Info }
 ]

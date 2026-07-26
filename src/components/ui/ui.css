@@ -86,6 +86,23 @@
   background: rgba(76, 154, 106, 0.08);
 }
 
+/* ---------- Toggle chip (used by format selector, QR options, etc.) ---------- */
+.toggle-chip {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 6px 11px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  transition: all 0.15s var(--ease);
+}
+
+.toggle-chip--active {
+  color: var(--accent-hazard);
+  border-color: var(--accent-hazard);
+  background: rgba(245, 180, 0, 0.08);
+}
+
 /* ---------- Card ---------- */
 .card {
   background: var(--surface-panel);

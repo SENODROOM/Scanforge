@@ -1,4 +1,5 @@
 import { BARCODE_FORMATS } from '../../utils/barcodeFormats'
+import '../ui/ui.css'
 import './scanner.css'
 
 export default function FormatSelector({ activeFormats, onToggle, onSelectAll, onSelectNone }) {
@@ -22,7 +23,7 @@ export default function FormatSelector({ activeFormats, onToggle, onSelectAll, o
             <button
               key={format.value}
               type="button"
-              className={`format-chip ${isActive ? 'format-chip--active' : ''}`}
+              className={`toggle-chip ${isActive ? 'toggle-chip--active' : ''}`}
               onClick={() => onToggle(format.value)}
               aria-pressed={isActive}
             >

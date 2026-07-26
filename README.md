@@ -14,8 +14,12 @@ nothing is ever uploaded to a server.
 - **14 supported symbologies** — QR, Data Matrix, Aztec, PDF417, Code 128/39/93,
   Codabar, EAN-13/8, UPC-A/E, ITF, RSS-14 — individually toggleable to improve
   detection speed and accuracy.
-- **Scan log** — every read is saved locally (localStorage), searchable, exportable
-  to CSV/JSON, and individually deletable.
+- **QR code generation** — encode any text or link into a QR code, with adjustable
+  error-correction level and size, then download as PNG or SVG or copy the image
+  straight to the clipboard.
+- **Scan log** — every read (and every generated code you download or copy) is
+  saved locally (localStorage), searchable, exportable to CSV/JSON, and
+  individually deletable.
 - **Fully responsive**, keyboard-accessible, and respects `prefers-reduced-motion`.
 
 ## Tech stack
@@ -25,6 +29,7 @@ nothing is ever uploaded to a server.
 | Framework  | React 18 + Vite 5                |
 | Routing    | react-router-dom v6              |
 | Decoding   | @zxing/browser + @zxing/library  |
+| Encoding   | qrcode                           |
 | Icons      | lucide-react                     |
 | Styling    | Plain CSS with design tokens (no framework) |
 | Storage    | Browser localStorage (no backend)|
@@ -63,10 +68,11 @@ scanforge/
 │   │   ├── ui/            Button, Badge, Card, Toast — shared design-system atoms
 │   │   ├── layout/         Navbar, Footer, page shell
 │   │   ├── scanner/        Camera + upload scanning, format/device selectors, result panel
+│   │   ├── generate/        QR code encoder with live preview
 │   │   └── history/        Scan log table, toolbar, empty state
 │   ├── context/             ScanHistoryContext (persisted log), ToastContext
-│   ├── hooks/                useBarcodeScanner, useCameraDevices, useLocalStorage
-│   ├── pages/                ScannerPage, HistoryPage, AboutPage
+│   ├── hooks/                useBarcodeScanner, useCameraDevices, useQrGenerator, useLocalStorage
+│   ├── pages/                ScannerPage, GeneratePage, HistoryPage, AboutPage
 │   ├── utils/                barcodeFormats, exportData (CSV/JSON), formatTimestamp
 │   ├── styles/                reset.css, variables.css (design tokens), global.css
 │   ├── App.jsx                Routes + providers
