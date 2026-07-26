@@ -1,0 +1,127 @@
+.navbar {
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-panel);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+.navbar__inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.navbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+}
+
+.navbar__brand-icon {
+  color: var(--accent-hazard);
+  display: inline-flex;
+}
+
+.navbar__brand-accent {
+  color: var(--accent-hazard);
+}
+
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.navbar__link {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: color 0.15s var(--ease), background 0.15s var(--ease);
+}
+
+.navbar__link:hover {
+  color: var(--text-primary);
+  background: var(--surface-raised);
+}
+
+.navbar__link--active {
+  color: var(--accent-hazard);
+  background: rgba(245, 180, 0, 0.1);
+}
+
+.navbar__toggle {
+  display: none;
+  color: var(--text-primary);
+}
+
+@media (max-width: 720px) {
+  .navbar__toggle {
+    display: flex;
+  }
+  .navbar__links {
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: var(--surface-panel);
+    border-bottom: 1px solid var(--border);
+    flex-direction: column;
+    align-items: stretch;
+    padding: 8px;
+    display: none;
+  }
+  .navbar__links--open {
+    display: flex;
+  }
+  .navbar__link {
+    padding: 12px 14px;
+  }
+}
+
+.footer {
+  border-top: 1px solid var(--border);
+  background: var(--surface-panel);
+  padding: 20px 0;
+}
+
+.footer__inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--text-faint);
+}
+
+.footer__brand {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.footer__meta {
+  font-family: var(--font-mono);
+}

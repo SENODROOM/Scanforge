@@ -1,0 +1,125 @@
+/* ---------- Scanner page ---------- */
+.scanner-page__header {
+  margin-bottom: 28px;
+}
+.scanner-page__header h1 {
+  font-size: 30px;
+  margin-bottom: 8px;
+}
+.scanner-page__header p {
+  color: var(--text-secondary);
+  max-width: 60ch;
+}
+
+.scanner-page__layout {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .scanner-page__layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.scanner-page__tabs {
+  display: inline-flex;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.scanner-page__tab {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: var(--surface-panel);
+}
+
+.scanner-page__tab--active {
+  background: var(--accent-hazard);
+  color: var(--text-on-hazard);
+}
+
+/* ---------- History / About shared headers ---------- */
+.history-page__header,
+.about-page__header {
+  margin-bottom: 26px;
+}
+.history-page__header h1,
+.about-page__header h1 {
+  font-size: 28px;
+  margin-bottom: 6px;
+}
+.history-page__header p,
+.about-page__header p {
+  color: var(--text-secondary);
+}
+
+/* ---------- About page ---------- */
+.about-page__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 760px) {
+  .about-page__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.about-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.about-card svg {
+  color: var(--accent-hazard);
+}
+.about-card h3 {
+  font-size: 15px;
+}
+.about-card p {
+  color: var(--text-secondary);
+  font-size: 13.5px;
+}
+
+.about-formats h3 {
+  margin-bottom: 14px;
+}
+.about-formats__group {
+  margin-bottom: 14px;
+}
+.about-formats__group:last-child {
+  margin-bottom: 0;
+}
+.about-formats__group h4 {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 8px;
+}
+.about-formats__group ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.about-formats__group li {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 5px 10px;
+  color: var(--text-secondary);
+}

@@ -1,0 +1,129 @@
+.history-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.history-toolbar__search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 9px 12px;
+  flex: 1;
+  min-width: 220px;
+  color: var(--text-faint);
+}
+
+.history-toolbar__search input {
+  flex: 1;
+  color: var(--text-primary);
+  font-size: 13.5px;
+}
+
+.history-toolbar__actions {
+  display: flex;
+  gap: 8px;
+}
+
+.history-table {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.history-table__head,
+.history-table__row {
+  display: grid;
+  grid-template-columns: 56px 2.2fr 1fr 0.8fr 1fr 66px;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 16px;
+}
+
+.history-table__head {
+  background: var(--surface-panel);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.history-table__row {
+  border-top: 1px solid var(--border);
+  font-size: 13.5px;
+}
+
+.history-table__row:hover {
+  background: var(--surface-panel);
+}
+
+.history-table__index {
+  font-family: var(--font-mono);
+  color: var(--text-faint);
+  font-size: 12.5px;
+}
+
+.history-table__value {
+  font-family: var(--font-mono);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.history-table__source {
+  color: var(--text-secondary);
+  text-transform: capitalize;
+}
+
+.history-table__time {
+  color: var(--text-faint);
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+}
+
+.history-table__row-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  color: var(--text-faint);
+}
+.history-table__row-actions button:hover {
+  color: var(--accent-hazard);
+}
+
+@media (max-width: 760px) {
+  .history-table__head {
+    display: none;
+  }
+  .history-table__row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+  .history-table__row-actions {
+    justify-content: flex-start;
+  }
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-faint);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-md);
+}
+
+.empty-state p {
+  font-family: var(--font-display);
+  font-size: 16px;
+  color: var(--text-secondary);
+}

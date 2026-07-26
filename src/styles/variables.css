@@ -1,0 +1,37 @@
+:root {
+  /* surfaces — steel panel / warehouse floor */
+  --surface-ground: #15171a;
+  --surface-panel: #1e2126;
+  --surface-raised: #262a31;
+  --surface-inset: #101214;
+
+  /* signature accents — hazard yellow, safety-laser red, QC-pass green */
+  --accent-hazard: #f5b400;
+  --accent-hazard-strong: #ffc31a;
+  --accent-laser: #e8432c;
+  --accent-laser-strong: #ff5138;
+  --accent-pass: #4c9a6a;
+
+  /* text — worn label ink */
+  --text-primary: #f2f0e9;
+  --text-secondary: #9ba0a6;
+  --text-faint: #5b6067;
+  --text-on-hazard: #171400;
+
+  /* borders */
+  --border: rgba(242, 240, 233, 0.1);
+  --border-strong: rgba(242, 240, 233, 0.2);
+
+  /* type — condensed industrial display, grotesque body, mono for data */
+  --font-display: 'Oswald', 'Arial Narrow', sans-serif;
+  --font-body: 'Barlow', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+
+  /* radius — small, machined-metal corners, not bubble-rounded */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* motion */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
