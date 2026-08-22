@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { Copy, Download, FileImage, QrCode } from 'lucide-react'
+import { Copy, Download, FileImage, ImageUp, QrCode, X } from 'lucide-react'
 import { useQrGenerator } from '../../hooks/useQrGenerator'
 import { useScanHistory } from '../../context/ScanHistoryContext'
 import { useToast } from '../../context/ToastContext'
+import { drawLogoOnCanvas, embedLogoInSvg, loadImage } from '../../utils/qrLogo'
 import Button from '../ui/Button'
 import '../ui/ui.css'
 import './generate.css'
@@ -21,6 +22,7 @@ const SIZE_OPTIONS = [
 ]
 
 const MAX_LENGTH = 2000
+const MAX_LOGO_BYTES = 2 * 1024 * 1024
 const RENDER_COLORS = { dark: '#000000', light: '#ffffff' }
 
 export default function QrGenerator() {
@@ -28,7 +30,10 @@ export default function QrGenerator() {
   const [errorLevel, setErrorLevel] = useState('M')
   const [size, setSize] = useState(320)
   const [hasCode, setHasCode] = useState(false)
+  const [logoDataUrl, setLogoDataUrl] = useState(null)
   const canvasRef = useRef(null)
+  const logoImageRef = useRef(null)
+  const logoInputRef = useRef(null)
 
   const { renderToCanvas, toSvgString, error } = useQrGenerator()
   const { addScan } = useScanHistory()
@@ -53,6 +58,9 @@ export default function QrGenerator() {
           errorCorrectionLevel: errorLevel,
           color: RENDER_COLORS
         })
+        if (logoDataUrl && logoImageRef.current) {
+          drawLogoOnCanvas(canvas, logoImageRef.current)
+        }
         setHasCode(true)
       } catch {
         setHasCode(false)
@@ -60,7 +68,37 @@ export default function QrGenerator() {
     }, 300)
 
     return () => clearTimeout(timeout)
-  }, [text, size, errorLevel, renderToCanvas])
+  }, [text, size, errorLevel, logoDataUrl, renderToCanvas])
+
+  const handleLogoUpload = async (e) => {
+    const file = e.target.files?.[0]
+    e.target.value = ''
+    if (!file) return
+    if (!file.type.startsWith('image/')) {
+      pushToast('Please choose an image file', 'error')
+      return
+    }
+    if (file.size > MAX_LOGO_BYTES) {
+      pushToast('Image is too large (max 2MB)', 'error')
+      return
+    }
+    const reader = new FileReader()
+    reader.onload = async () => {
+      const dataUrl = reader.result
+      try {
+        logoImageRef.current = await loadImage(dataUrl)
+        setLogoDataUrl(dataUrl)
+      } catch {
+        pushToast('Unable to load that image', 'error')
+      }
+    }
+    reader.readAsDataURL(file)
+  }
+
+  const handleRemoveLogo = () => {
+    logoImageRef.current = null
+    setLogoDataUrl(null)
+  }
 
   const logGeneration = useCallback(() => {
     addScan({ text: text.trim(), formatLabel: 'QR Code', source: 'generated' })
@@ -79,11 +117,14 @@ export default function QrGenerator() {
   const handleDownloadSvg = async () => {
     if (!hasCode) return
     try {
-      const svg = await toSvgString(text.trim(), {
+      let svg = await toSvgString(text.trim(), {
         margin: 2,
         errorCorrectionLevel: errorLevel,
         color: RENDER_COLORS
       })
+      if (logoDataUrl) {
+        svg = embedLogoInSvg(svg, logoDataUrl)
+      }
       const blob = new Blob([svg], { type: 'image/svg+xml' })
       const url = URL.createObjectURL(blob)
       const link = document.createElement('a')
@@ -170,6 +211,44 @@ export default function QrGenerator() {
                 </button>
               ))}
             </div>
+          </div>
+
+          <div className="qr-generator__option-group">
+            <span className="qr-generator__option-label">Center image (optional)</span>
+            <input
+              ref={logoInputRef}
+              type="file"
+              accept="image/*"
+              hidden
+              onChange={handleLogoUpload}
+            />
+            {logoDataUrl ? (
+              <div className="qr-generator__logo-preview">
+                <img src={logoDataUrl} alt="Uploaded center logo" className="qr-generator__logo-thumb" />
+                <span className="qr-generator__logo-name">Image added for styling</span>
+                <button
+                  type="button"
+                  className="qr-generator__logo-remove"
+                  onClick={handleRemoveLogo}
+                  aria-label="Remove center image"
+                >
+                  <X size={14} />
+                </button>
+              </div>
+            ) : (
+              <button
+                type="button"
+                className="toggle-chip qr-generator__logo-add"
+                onClick={() => logoInputRef.current?.click()}
+              >
+                <ImageUp size={14} /> Upload image
+              </button>
+            )}
+            {logoDataUrl && (errorLevel === 'L' || errorLevel === 'M') && (
+              <p className="qr-generator__hint">
+                For reliable scanning with a center image, use Q or H error correction.
+              </p>
+            )}
           </div>
         </div>
 
