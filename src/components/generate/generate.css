@@ -91,11 +91,10 @@
 .qr-generator__logo-thumb {
   width: 36px;
   height: 36px;
-  object-fit: contain;
+  object-fit: cover;
   background: #ffffff;
-  border-radius: var(--radius-sm);
+  border-radius: 50%;
   border: 1px solid var(--border-strong);
-  padding: 3px;
 }
 
 .qr-generator__logo-name {
